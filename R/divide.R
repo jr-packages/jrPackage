@@ -4,4 +4,4 @@
 #' @param x a number
 #' @param y another number
 #' @export
-div = function(x, y) x/y
+div = function(x, y) x / y

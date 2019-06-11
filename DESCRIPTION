@@ -1,7 +1,7 @@
 Package: jrPackage
 Type: Package
 Title: Course Material for Building R Packages
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Colin", "Gillespie", email="colin@jumpingrivers.com", role =
     c("aut", "cre"))
 Author: Colin Gillespie
@@ -15,7 +15,7 @@ Depends:
     R (>= 3.0)
 Imports:
     devtools,
-    knitr, roxygen2, drat, poweRlaw, testthat, jrData
+    knitr, roxygen2, drat, poweRlaw, testthat, jrData, lintr
 Remotes: jr-packages/jrData
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
