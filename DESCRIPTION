@@ -19,4 +19,3 @@ Imports:
 Remotes: jr-packages/jrData
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-Additional_repositories: http://rcourses.github.io/drat/
