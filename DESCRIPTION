@@ -18,4 +18,4 @@ Imports:
     knitr, roxygen2, drat, poweRlaw, testthat, jrData, lintr
 Remotes: jr-packages/jrData
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
