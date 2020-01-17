@@ -1,7 +1,7 @@
 Package: jrPackage
 Type: Package
 Title: Course Material for Building R Packages
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Colin", "Gillespie", email="colin@jumpingrivers.com", role =
     c("aut", "cre"))
 Author: Colin Gillespie
