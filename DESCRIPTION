@@ -1,21 +1,35 @@
-Package: jrPackage
 Type: Package
+Package: jrPackage
 Title: Course Material for Building R Packages
-Version: 0.1.1
-Authors@R: person("Colin", "Gillespie", email="colin@jumpingrivers.com", role =
-    c("aut", "cre"))
+Version: 0.1.2
+Authors@R: 
+    person(given = "Colin",
+           family = "Gillespie",
+           role = c("aut", "cre"),
+           email = "colin@jumpingrivers.com")
 Author: Colin Gillespie
 Maintainer: Colin Gillespie <colin@jumpingrivers.com>
-Description: This is a one day intensive course on building an R package.
-    This course will be a mixture of lectures and computer practicals.
-    The main focus will be getting a working R package ready for distribution.
-URL: http://www.jumpingrivers.com
+Description: This is a one day intensive course on building an R
+    package.  This course will be a mixture of lectures and computer
+    practicals.  The main focus will be getting a working R package ready
+    for distribution.
 License: GPL-3 | GPL-2
+URL: http://www.jumpingrivers.com
 Depends:
     R (>= 3.0)
 Imports:
-    devtools, tinytex,
-    knitr, roxygen2, drat, poweRlaw, testthat, jrData, lintr
-Remotes: jr-packages/jrData
-VignetteBuilder: knitr
+    devtools,
+    drat,
+    jrData,
+    knitr,
+    lintr,
+    poweRlaw,
+    roxygen2,
+    testthat,
+    tinytex
+VignetteBuilder: 
+    knitr
+Remotes: 
+    jr-packages/jrData
+Encoding: UTF-8
 RoxygenNote: 7.0.2
