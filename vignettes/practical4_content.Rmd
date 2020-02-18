@@ -11,13 +11,13 @@ If you want to include more extensive examples or even just further documentatio
 We can view vignettes from other packages using the `vignette` \newline{function}
 
 ```{r}
-vignette(package="knitr")
+vignette(package = "knitr")
 ```
 
 or to view in your web browser
 
 ```{r, , message=FALSE}
-browseVignettes(package="knitr")
+browseVignettes(package = "knitr")
 ```
 
 ## Example: markdown vignettes
@@ -31,12 +31,14 @@ Vignettes are stored in the `vignettes/` directory. The simplest vignette uses R
 \marginnote{The UTF-8 line specifies the file encod-
 ing.}
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo=c(1:4,6,8:17)}
 ---
 title: "My very first vignette"
 author: "Colin Gillespie and Robin Lovelace"
 output: rmarkdown::html_vignette
+#nolint start
 vignette: >
+#nolint end
    %\VignetteIndexEntry{My very first vignette}
    %\VignetteEngine{knitr::rmarkdown}
    %\VignetteEncoding{UTF-8}
@@ -47,15 +49,17 @@ vignette: >
 This is my **first** package vignette. I can
 include mathematics, such as $x^2$. R code is also
 nicely formatted and displayed.
-
-# ```{r}
-# x = runif(10)
-# ```
-and plots
-# ```{r}
-# plot(x)
-# ```
 ```
+
+```` ```{r} ````    
+`x = runif(10)`    
+```` ``` ````     
+
+and plots
+
+```` ```{r} ````    
+`plot(x)`    
+```` ``` ````    
 
 1. The first few lines register `knitr` as the vignette engine and provide an entry for the list of vignettes.
 
