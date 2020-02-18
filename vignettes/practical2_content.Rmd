@@ -6,7 +6,7 @@ Using `roxygen2` simplifies documentation\sidenote{The first package I wrote did
 
 1. Copy the following `roxygen2` descriptions to your `add` function
 
-```{r, echo=c(1:14,16)}
+```{r}
 #' @title A function for adding
 #'
 #' @description A really good adding function.
@@ -21,12 +21,10 @@ Using `roxygen2` simplifies documentation\sidenote{The first package I wrote did
 #' add(5, 10)
 #' ## Can also use negative numbers
 #' add(-5, 10)
-#nolint start
 add = function(x, y) {
 if (!check_numeric(c(x, y))) stop("Not numeric")
 x + y
 }
-#nolint end
 ```
 
 2. Rebuild your package and look at the help file for the `add` function, i.e. `?add` . Run the examples via

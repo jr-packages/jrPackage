@@ -185,13 +185,11 @@ and save it in the `basic.R` file.
 
 3. Now use `check_numeric` in the `add` function
 
-```{r, eval=FALSE, echo=2}
-#nolint start
+```{r, eval=FALSE}
 add = function(x, y) {
 if (!check_numeric(c(x, y))) stop("Not numeric")
 x + y
 }
-#nolint end
 ```
 
 Rebuild your package and check that the `add` function still works.
