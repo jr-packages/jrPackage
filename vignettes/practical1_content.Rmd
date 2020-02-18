@@ -177,7 +177,7 @@ add(1, 2)
 
 2. Create a new function called `check_numeric`
 
-```{r, eval=FALSE}
+```{r}
 check_numeric = function(x) all(is.numeric(x))
 ```
 
