@@ -10,9 +10,7 @@ RStudio projects make it straightforward to switch between analyses. You can cre
 
 - by cloning a version control\sidenote{Git or subversion} repository.
 
-\noindent{Each project has its own working directory, workspace, history, and source documents.}
-
-\indent{When we create an RStudio package project, this will create a new directory that contains five files.}
+\noindent Each project has its own working directory, workspace, history, and source documents. When we create an RStudio package project, this will create a new directory that contains five files.
 
 - `.RbuildIgnore`: this file contains a list of file names that the R build process should ignore when constructing your package. For example, the `.Rproj` file.
 
@@ -20,199 +18,189 @@ RStudio projects make it straightforward to switch between analyses. You can cre
 
 - `*.Rproj`: an RStudio project file.
 
-- `NAMESPACE`: a file that contains exported/exposed package functions. \sidenote{\url{http://goo.gl/I5yGf8}}
+- `NAMESPACE`: a file that contains exported/exposed package functions\sidenote{\url{http://goo.gl/I5yGf8}}.
 
-\noindent{Your package directory will also contain two directories.}
+\noindent Your package directory will also contain two directories:
 
-- `man`: documentation directory: when you use the help function in R, the help pages returned live in this directory.
+- `man/`: documentation directory. When you use the help function in R, the help pages returned live in this directory.
 
-- `R`: R file directory: all R functions exported from your package belong in this directory.
+- `R/`: R file directory. All R functions exported from your package belong in this directory.
 
 ## Tasks
 
 1. Create a “package” project, via
-```
-       File -> New Project -> New Directory -> R
-```
-
-Call the package pkg and select the directory you want to store the \newline{package in. Then click}
-```
-       Create Project
-```
-
-Congratulations - you have just created your first package called \newline{pkg}
+   ```
+   File -> New Project -> New Directory -> R
+   ```
+   Call the package __pkg__ and select the directory you want to store the package in. Then click
+   ```
+   Create Project
+   ```
+   Congratulations - you have just created your first package called __pkg__.
 
 2. Click
-```
+   ```
    Build -> Install and Restart
-```
+   ```
 
 3. Now type
 
-```{r, eval=FALSE}
-library("pkg")
-hello()
-```
+   ```{r, eval=FALSE}
+   library("pkg")
+   hello()
+   ```
 
-4. Look at the `NAMESPACE` file. Notice that the function `hello` has been exported.
+4. Look at the `NAMESPACE` file. Notice that the function `hello()` has been exported.
 
-5. The `hello` function has also been documented
+5. The `hello()` function has also been documented
+   ```{r, eval=FALSE}
+   help("hello")
+   ```
+   The associated documentation file is in the `man/` directory.
 
-```{r, eval=FALSE}
-help("hello")
-```
+## The __roxygen2__ package
 
-The associated documentation file is in the man directory.
-
-## roxygen2
-
-Keeping the `NAMESPACE` file and documentation up-to-date is a painful experience. To ameliorate the process, we use the `roxygen2` package to automatically generate the necessary entries. Above function definitions we add `roxygen2` tags. The tags are of the form:
+Keeping the `NAMESPACE` file and documentation up-to-date is a painful experience. To ameliorate the process, we use the __roxygen2__ package to automatically generate the necessary entries. Above function definitions we add __roxygen2__ tags. The tags are of the form:
 
 ```{r}
 #' @export
 #' @details
 #' @aliases
 ```
-
-Notice the tags are just R comments.
+\noindent Notice the tags are just R comments.
 
 ## Tasks
 
 1. Check that you have the necessary R packages installed
 
-```{r, eval=FALSE}
-library("devtools")
-library("roxygen2")
-```
+   ```{r, message = FALSE}
+   library("devtools")
+   library("roxygen2")
+   ```
+   If you don’t have them installed, then install them in the usual way
 
-If you don’t have them installed, then install them in the usual way
-
-```{r, eval=FALSE}
-install.packages(c("devtools", "roxygen2"))
-```
+   ```{r, eval=FALSE}
+   install.packages(c("devtools", "roxygen2"))
+   ```
 
 2. Click on 
 
-```
+   ```
    Build -> Configure build tools
-```
+   ```
 
-\noindent{then select}
+   then select
 
-```
+   ```
    Generate documentation with Roxygen
-```
+   ```
+   and click OK. Now when we build our package, RStudio will automatically run
 
-and click OK. Now when we build our package, RStudio will \newline{automatically run}
-
-```{r, eval=FALSE}
-library("roxygen2")
-roxygenise(".")  
-```
+   ```{r, eval=FALSE}
+   library("roxygen2")
+   roxygenise(".")  
+   ```
 
 3. In the file `R/hello.R` add
 
-```{r}
-#' @export
-```
+   ```{r}
+   #' @export
+   ```
 
-just above the `hello` function, i.e.
+   just above the `hello()` function, i.e.
 
-```{r, eval=FALSE}
-#' @export
-hello <- function() {
-print("Hello, world!")
-}
-```
+   ```{r, eval=FALSE}
+   #' @export
+   hello <- function() {
+      print("Hello, world!")
+   }
+   ```
 
-The export tag above the `hello` function indicates that we want to \newline{export\sidenote{Export means the users loading this package, can access this function.} this particular function.}
+   The export tag above the `hello()` function indicates that we want to export\sidenote{Export means the users loading this package, can access this function.} this particular function.
 
-4. Now delete the `man` directory and the `NAMESPACE` file\sidenote{The reason for deleting these is that we will automatically generate them using \texttt{roxygen2} - more details below.}. Select\sidenote{The keyboard shortcut for this is
+4. Now delete the `man/` directory and the `NAMESPACE` file\sidenote{The reason for deleting these is that we will automatically generate them using \textbf{roxygen2} - more details below.}. Select\sidenote{The keyboard shortcut for this is
 Ctrl + B.}
 
-```
+   ```
    Build -> Install and Restart
-```
-
-You should now be able to load your package with
-
-```{r, eval=FALSE}
-library("pkg")
-```
-
-and call the hello function
-
-```{r, eval=FALSE}
-hello()
-```
+   ```
+   \noindent You should now be able to load your package with
+   ```{r, eval=FALSE}
+   library("pkg")
+   ```
+   \noindent and call the hello function
+   ```{r, eval=FALSE}
+   hello()
+   ```
 
 5. Open the `NAMESPACE` file. You should see the entry
 
-```{r, eval=FALSE}
-# Generated by roxygen2: do not edit by hand
-export(hello)
-```
+   ```{r, eval=FALSE}
+   # Generated by roxygen2: do not edit by hand
+   export(hello)
+   ```
+
 
 ## Adding new functions
 
-All R functions that we create in our package are saved in the `R/` directory\sidenote{The files can have a .R or .r file extension. Personally, I prefer .R.}. This directory can contain multiple files.
+All R functions that we create in our package are saved in the `R/` directory\sidenote{The files can have a \texttt{.R} or \texttt{.r} file extension. Personally, I prefer \texttt{.R}.}. This directory can contain multiple files.
 
 ## Tasks
 
 1. Create a new file in the `R/` directory called `basic.R`. In this file add the following code
 
-```{r, eval=FALSE}
-#' @export
-add = function(x, y) {
-return(x + y)
-}
-```
+   ```{r, eval=FALSE}
+   #' @export
+   add = function(x, y) {
+      return(x + y)
+   }
+   ```
+   Install and restart your package\sidenote{Remember the keyboard shortcut Ctrl + B} . After reloading your package, the following code should run
 
-Install and restart your package\sidenote{Remember the keyboard shortcut Ctrl + B} . After reloading your package, the \newline{following code should run}
+   ```{r, eval=FALSE}
+   library("pkg")
+   add(1, 2)
+   ```
 
-```{r, eval=FALSE}
-library("pkg")
-add(1, 2)
-```
+2. Create a new function called `check_numeric()`
 
-2. Create a new function called `check_numeric`
+   ```{r}
+   check_numeric = function(x) all(is.numeric(x))
+   ```
 
-```{r}
-check_numeric = function(x) all(is.numeric(x))
-```
+   \noindent and save it in the `basic.R` file.
 
-and save it in the `basic.R` file.
+3. Now use `check_numeric()` in the `add()` function
 
-3. Now use `check_numeric` in the `add` function
+   ```{r}
+   add = function(x, y) {
+      if (!check_numeric(c(x, y))) stop("Not numeric")
+      x + y
+   }
+   ```
+   \noindent Rebuild your package and check that the `add()` function still works.
+   
 
-```{r, eval=FALSE}
-add = function(x, y) {
-if (!check_numeric(c(x, y))) stop("Not numeric")
-x + y
-}
-```
+4. Notice that we haven’t exported the `check_numeric()` function\sidenote{Remember to export a function, the function name should be in the \texttt{NAMESPACE} file.}, so this will raise an error
 
-Rebuild your package and check that the `add` function still works.
+   ```{r, eval=FALSE}
+   library("pkg")
+   check_numeric(1)
+   ```
 
-4. Notice that we haven’t exported the `check_numeric` function\sidenote{Remember to export a function, the function name should be in the \texttt{NAMESPACE} file.}, so this will raise an error
+   \noindent but we can access any non-exported function in a package using the `:::` operator
 
-```{r, eval=FALSE}
-library("pkg")
-check_numeric(1)
-```
+   ```{r, eval=FALSE}
+   pkg:::check_numeric(1)
+   ```
 
-but we can access any non-exported function in a package using the \newline{::: operator}
+   \noindent We can access\sidenote{The benefit of doing this is that we haven’t loaded the package.} any exported function using `::`
 
-```{r, eval=FALSE}
-pkg:::check_numeric(1)
-```
+   ```{r, eval=FALSE}
+   pkg::add(1, 1)
+   ```
 
-We can access\sidenote{The benefit of doing this is that we haven’t loaded the package.} any exported function using ::
+5. Now create a function `subtract()` and `export` this function. Rebuild your package and check that this works OK.
 
-```{r, eval=FALSE}
-pkg::add(1, 1)
-```
-
-5. Now create a function `subtract` and `export` this function. Rebuild your package and check that this works OK.
-
-6. Delete your package and re-add the functions: `add`, `check_numeric` and `subtract`\sidenote{The purpose of this is to highlight how easy it is to create packages.}.
+\sloppy
+6. Delete your package and re-add the functions: `add()`, `check_numeric()` and `subtract()`\sidenote{The purpose of this is to highlight how easy it is to create packages.}.
