@@ -15,7 +15,7 @@ sufficient" and not make use of extra functionality provided by the package, so 
 
 \noindent{Data files live in the \texttt{data/} directory.}
 
-\indent{Each data file should also have an associated help page. The easiest way to generate a help page is to use \texttt{roxygen2} and a dummy R function. Typically, I have a file called \texttt{data\_help\_files.R}, which has entries for the each data set. For example,}
+\indent{Each data file should also have an associated help page. The easiest way to generate a help page is to use \textbf{roxygen2} and a dummy R function. Typically, I have a file called \texttt{data\_help\_files.R}, which has entries for the each data set. For example,}
 
 ```{r, eval=FALSE}
 ## Entry in data_help_files.R
@@ -41,16 +41,14 @@ NULL
 
 2. Create the following data frame
 
-```{r}
-example_data = data.frame(x = runif(10), y = runif(10))
-```
-
+   ```{r}
+   example_data = data.frame(x = runif(10), y =        runif(10))
+   ```
 Now save\sidenote{Use the save function.} the data frame `example_data` in the `data/` directory
-
-```{r, eval=FALSE}
-save(example_data, file = "data/example_data.RData")
-```
-
+   ```{r, eval=FALSE}
+   save(example_data,
+   file= "data/example_data.RData")
+   ```
 3. Create a file called `data_help_files.R` in the `R/` directory and document your new data set.
 
 4. Install and restart your package. Can you access the help page and the data set?
@@ -62,7 +60,7 @@ save(example_data, file = "data/example_data.RData")
 A demo is similar to function examples, but is typically longer and shows how to use multiple functions together. Demos are plain `.R` files that live in the `demo/` package directory. The demos are accessed with the `demo()` function.
 
 \indent{In \texttt{demo/} directory, there should also be an \texttt{00Index} file, that lists
-the demos\sidenote{There is a planned \texttt{demoTitle} tag for \texttt{roxygen2}, but currently this hasn’t been implemented.}. For example,\sidenote{Note the white space separation in
+the demos\sidenote{There is a planned \texttt{demoTitle} tag for \textbf{roxygen2}, but currently this hasn’t been implemented.}. For example,\sidenote{Note the white space separation in
 the \texttt{00Index}. Use at least four spaces
 to avoid annoying error messages.}}
 

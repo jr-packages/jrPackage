@@ -8,21 +8,21 @@ If you want to include more extensive examples or even just further documentatio
   \em \url{http://dictionary.reference.com/browse/vignette}
 \end{quote}
 
-We can view vignettes from other packages using the `vignette` \newline{function}
+\noindent{We can view vignettes from other packages using the \texttt{vignette()} function}
 
-```{r}
-vignette(package = "knitr")
-```
+   ```{r}   
+   vignette(package = "knitr")   
+   ```   
 
-or to view in your web browser
+\noindent{or to view in your web browser}
 
-```{r, , message=FALSE}
-browseVignettes(package = "knitr")
-```
+   ```{r, , message=FALSE}
+   browseVignettes(package = "knitr")
+   ```
 
 ## Example: markdown vignettes
 
-Vignettes are stored in the `vignettes/` directory. The simplest vignette uses R-markdown and is formatted by the `knitr` package. To create a package vignette, we simply place the file in the `vignettes/` directory. 
+Vignettes are stored in the `vignettes/` directory. The simplest vignette uses R-markdown and is formatted by the **knitr** package. To create a package vignette, we simply place the file in the `vignettes/` directory. 
 
 \marginnote{The output style is \texttt{html\_vignette}. This is more lightweight (in terms of file size) than the standard \texttt{html\_document}}
 
@@ -31,41 +31,41 @@ Vignettes are stored in the `vignettes/` directory. The simplest vignette uses R
 \marginnote{The UTF-8 line specifies the file encod-
 ing.}
 
-```{r, eval=FALSE, echo=c(1:4,6,8:17)}
----
-title: "My very first vignette"
-author: "Colin Gillespie and Robin Lovelace"
-output: rmarkdown::html_vignette
-#nolint start
-vignette: >
-#nolint end
-   %\VignetteIndexEntry{My very first vignette}
-   %\VignetteEngine{knitr::rmarkdown}
-   %\VignetteEncoding{UTF-8}
----
+   ```{r, eval=FALSE, echo=c(1:4,6,8:17)}
+   ---
+   title: "My very first vignette"
+   author: "Colin Gillespie and Robin Lovelace"
+   output: rmarkdown::html_vignette
+   #nolint start
+   vignette: >
+   #nolint end
+      %\VignetteIndexEntry{My very first vignette}
+      %\VignetteEngine{knitr::rmarkdown}
+      %\VignetteEncoding{UTF-8}
+   ---
 
-## My first package
+   ## My first package
 
-This is my **first** package vignette. I can
-include mathematics, such as $x^2$. R code is also
-nicely formatted and displayed.
-```
+   This is my **first** package vignette. I can
+   include mathematics, such as $x^2$. R code is
+   also nicely formatted and displayed.
+   ```
 
-```` ```{r} ````    
-`x = runif(10)`    
-```` ``` ````     
+   ```` ```{r} ````    
+   `x = runif(10)`    
+   ```` ``` ````     
 
 and plots
 
-```` ```{r} ````    
-`plot(x)`    
-```` ``` ````    
+   ```` ```{r} ````    
+   `plot(x)`    
+   ```` ``` ````    
 
-1. The first few lines register `knitr` as the vignette engine and provide an entry for the list of vignettes.
+1. The first few lines register **knitr** as the vignette engine and provide an entry for the list of vignettes.
 
 2. We have used markdown to add simple styling\sidenote{See \url{http://goo.gl/y9FO5} and the RStudio markdown reference sheet for further commands.}. For example \texttt{**first**} becomes **first** and \texttt{\$x\textasciicircum 2\$} becomes $x^2$.
 
-3. R code is executed in the ``` regions.
+3. R code is executed in the ` ``` ` regions.
 
 ## Tasks
 
@@ -73,9 +73,9 @@ and plots
 
 2. Create an R markdown file
 
-```
+   ```
    File -> New File -> R markdown
-```
+   ```
 
 and save it in the `vignettes/` directory.
 
@@ -83,27 +83,23 @@ and save it in the `vignettes/` directory.
 
 4. Add
 
-```
+   ```
    Suggests: knitr
    VignetteBuilder: knitr
-```
+   ```
 
-to the DESCRIPTION file\sidenote{Notice the \texttt{knitr} is only a \textbf{suggested} package, since it’s not essential.}. This will tell your package to build \newline{vignettes using \texttt{knitr}.}
+to the `DESCRIPTION` file\sidenote{Notice that \textbf{knitr} is only a \textbf{suggested} package, since it’s not essential.}. This will tell your package to build \newline{vignettes using \textbf{knitr}.}
 
 5. Vignettes won’t actually be built unless you are creating a source bundle\sidenote{If you submit your package to CRAN, then the vignettes will be built ready for distribution.}. To install a package with vignettes included, we first create the source package
-
-```
+   ```
    Build -> Build Source Package
-```
-
-and then install the package from source
-
-```{r, eval=FALSE}
-install.packages("pkg_1.0.tar.gz", repos=NULL,
-type="source")
-```
-
-Build and install your package. Check that you can access the \newline{vignette.}
+   ```
+\noindent{and then install the package from source}
+   ```{r, eval=FALSE}
+   install.packages("pkg_1.0.tar.gz", repos=NULL,
+   type="source")
+   ```
+\noindent{Build and install your package. Check that you can access the vignette.}
 
 6. Check and ensure that your package passes all tests\sidenote{CTRL + E.}.
 
@@ -111,22 +107,22 @@ Build and install your package. Check that you can access the \newline{vignette.
 
 You package typically also has documentation associated with the package name. For example,
 
-```{r, eval=FALSE, tidy=FALSE}
-library("pkg")
-?pkg
-```
+   ```{r, eval=FALSE, tidy=FALSE}
+   library("pkg")
+   ?pkg
+   ```
 
-\noindent{should bring up an overview of your package. Again we use \texttt{roxygen2} to generate the man page. Go to}
+\noindent{should bring up an overview of your package. Again we use \textbf{roxygen2} to generate the man page. Go to}
 
 \begin{center}
   \url{http://goo.gl/W2tJrF}
 \end{center}
-to view the entry for the `poweRlaw` package.
+\noindent{to view the entry for the \textbf{poweRlaw} package.}
 
 ## Tasks
 
 1. Create a file called `pkg-package.R` in the `R/` directory.
 
-2. Using the `poweRlaw` package as an example, create a man page for your package\sidenote{What do you think the \texttt{@aliases} tag does?}.
+2. Using the **poweRlaw** package as an example, create a `man/` page for your package\sidenote{What do you think the \texttt{@aliases} tag does?}.
 
 3. Do one final check and ensure that your package passes all tests.

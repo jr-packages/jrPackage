@@ -1,34 +1,33 @@
 # Documentation
 
-Using `roxygen2` simplifies documentation\sidenote{The first package I wrote didn’t use \texttt{roxygen2} and it was a very painful experience.}. The premise of `roxygen2` is simple: describe your functions in comments next to their definitions and `roxygen2` will process your source code and comments to produce Rd files in the `man/` directory. In theory, you should never directly edit the `Rd` files.
+Using **roxygen2** simplifies documentation\sidenote{The first package I wrote didn’t use \textbf{roxygen2} and it was a very painful experience.}. The premise of **roxygen2** is simple: describe your functions in comments next to their definitions and **roxygen2** will process your source code and comments to produce Rd files in the `man/` directory. In theory, you should never directly edit the `Rd` files.
 
 ## Tasks
 
-1. Copy the following `roxygen2` descriptions to your `add` function
+1. Copy the following **roxygen2** descriptions to your `add()` function
 
-```{r}
-#' @title A function for adding
-#'
-#' @description A really good adding function.
-#' Perhaps the best function ever!
-#'
-#' A work of pure genius.
-#' @param x a number
-#' @param y another number
-#' @return a number
-#' @export
-#' @examples
-#' add(5, 10)
-#' ## Can also use negative numbers
-#' add(-5, 10)
-add = function(x, y) {
-if (!check_numeric(c(x, y))) stop("Not numeric")
-x + y
-}
-```
+   ```{r}
+   #' @title A function for adding
+   #'
+   #' @description A really good adding function.
+   #' Perhaps the best function ever!
+   #'
+   #' A work of pure genius.
+   #' @param x a number
+   #' @param y another number
+   #' @return a number
+   #' @export
+   #' @examples
+   #' add(5, 10)
+   #' ## Can also use negative numbers
+   #' add(-5, 10)
+   add = function(x, y) {
+   if (!check_numeric(c(x, y))) stop("Not             numeric")
+   x + y
+   }
+   ```
 
-2. Rebuild your package and look at the help file for the `add` function, i.e. `?add` . Run the examples via
-
+2. Rebuild your package and look at the help file for the `add()` function, i.e. `?add` . Run the examples via
 \begin{table}[b]
   \centering
   \begin{tabular}{@{} ll}
@@ -49,32 +48,30 @@ x + y
     \texttt{@importFrom} & Import functions from other packages. \\
     \bottomrule
   \end{tabular}
-  \caption{Useful \texttt{roxygen2} tags for documenting functions.}\label{T1.1}
+  \caption{Useful \textbf{roxygen2} tags for documenting functions.}\label{T1.1}
 \end{table}
+   ```{r, eval=FALSE}              
+   example(add)           
+   ```              
+3. Add a help page for the `subtract()` function\sidenote{Install and restart.}.
 
-```{r, eval=FALSE}
-example(add)
-```
+4. Create a function called `multiply()` and add an associated help page\sidenote{Install and restart.}.
 
-3. Add a help page for the `subtract` function\sidenote{Install and restart.}.
+5. Create a function called `times()`
 
-4. Create a function called `multiply` and add an associated help page\sidenote{Install and restart.}.
+   ```{r}
+   times = function(x, y) multiply(x, y)
+   ```
 
-5. Create a function called `times`
+Export the `times()` function\sidenote{Install and restart.}.
 
-```{r}
-times = function(x, y) multiply(x, y)
-```
+6. Use the `@rdname` tag above the `times()` function to point to the `multiply()` help page, i.e.
 
-Export the `times` function\sidenote{Install and restart.}.
+   ```{r}
+   #' @rdname multiply
+   ```
 
-6. Use the `@rdname` tag above the `times` function to point to the `multiply` help page, i.e.
-
-```{r}
-#' @rdname multiply
-```
-
-Install and restart. Look at `?multiply` and `?times`. Now add \newline{\texttt{@examples} to the \texttt{times} function.} Look at the new `times` help \newline{page.}
+Install and restart. Look at `?multiply` and `?times`. Now add \newline{\texttt{@examples} to the \texttt{times()} function.} Look at the new `times()` help \newline{page.}
 
 ## Importing functions
 
@@ -82,44 +79,36 @@ We often want to use functions from other R packages. When we do this we need to
 
 ## Tasks
 
-1. Install the package `jrPackage` . First, we need the `drat` package
-
-```{r, eval=FALSE}
-install.packages("drat")
-```
-
+1. Install the package **jrPackage**. First, we need the **drat** package
+   ```{r, eval=FALSE}
+   install.packages("drat")
+   ```
 Then we add the rcourses repo\sidenote{Run the \texttt{.libPaths()} function to see the repository location.}
+   ```{r, eval=FALSE}
+   drat::addRepo("jr-packages")
+   ```
+\noindent{Then install as usual}
+   ```{r, eval=FALSE}
+   install.packages("jrPackage")
+   ```
 
-```{r, eval=FALSE}
-drat::addRepo("jr-packages")
-```
+2. The **jrPackage** contains a very useful function called `div()` that we want to use
 
-Then install as usual
+   ```{r}
+   library("jrPackage")
+   div(10, 2)
+   ```
+\noindent{To use the \texttt{div()} function within our package, we have to import it first}
+   ```{r}
+   #' @importFrom jrPackage div
+   ```
+\noindent{and add an entry to the \texttt{DESCRIPTION} file}
 
-```{r, eval=FALSE}
-install.packages("jrPackage")
-```
+   ```
+   Imports: jrPackage
+   ```
 
-2. The `jrPackage` contains a very useful function called `div` that we want to use
-
-```{r}
-library("jrPackage")
-div(10, 2)
-```
-
-To use the div function within our package, we have to import it \newline{first}
-
-```{r}
-#' @importFrom jrPackage div
-```
-
-and add an entry to the `DESCRIPTION` file
-
-```
-     Imports: jrPackage
-```
-
-Create a function `divide` that uses the `div` function.
+Create a function `divide()` that uses the `div()` function.
 
 ## The `DESCRIPTION` file
 
@@ -160,16 +149,16 @@ One of great things about R packages, is that there are a number of package chec
 
 1. Run the standard package checks on your package, via
 
-```
-      Build -> Check Package
-```
+   ```
+   Build -> Check Package
+   ```
 
 Check that you package passes all tests\sidenote{CTRL + E.}. Fix any errors, warnings \newline{or notes.}
 
-2. Add the following example to the `add` function
+2. Add the following example to the `add()` function
 
-```{r}
-#' add("A", "B")
-```
+   ```{r}
+   #' add("A", "B")
+   ```
 
 Build the package. Does the package still build? Check the \newline{package. Does the package pass all tests?}
