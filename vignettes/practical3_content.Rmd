@@ -1,0 +1,80 @@
+# Data and demos
+
+## Data in packages
+
+Packages can also contain example data sets\sidenote{Full details are given at \url{http://goo.gl/Y4Srx4}.}. Data files\sidenote{Note that R code should be "self-
+sufficient" and not make use of extra functionality provided by the package, so that the data file can also be used without having to load the package.} can be one of three types as indicated by their extension.
+
+- plain R code (`.R` or `.r`)
+
+- tables (`.tab`, `.txt` or `.csv`)
+
+- `save()` images (`.RData` or `.rda`).
+
+\marginnote{I tend to use RData files.}
+
+\noindent{Data files live in the \texttt{data/} directory.}
+
+\indent{Each data file should also have an associated help page. The easiest way to generate a help page is to use \textbf{roxygen2} and a dummy R function. Typically, I have a file called \texttt{data\_help\_files.R}, which has entries for the each data set. For example,}
+
+```{r, eval=FALSE}
+## Entry in data_help_files.R
+## Name is name of the data set.
+#' @name moby
+#' @aliases moby_sample
+#' @title Moby Dick word count
+#' @description The frequency of occurrence of unique words
+#' in the novel Moby Dick by Herman Melville.
+#'
+#' The data set moby_sample is 2000 values sampled from the
+#' moby data set.
+#' @docType data
+#' @format A vector
+#' @source M. E. J. Newman, "Power laws, Pareto distributions
+#' and Zipf's law." Contemporary Physics 46, 323 (2005).
+NULL
+```
+
+## Tasks
+
+1. Create a `data/` directory.
+
+2. Create the following data frame
+
+   ```{r}
+   example_data = data.frame(x = runif(10), y =        runif(10))
+   ```
+Now save\sidenote{Use the save function.} the data frame `example_data` in the `data/` directory
+   ```{r, eval=FALSE}
+   save(example_data,
+   file = "data/example_data.RData")
+   ```
+3. Create a file called `data_help_files.R` in the `R/` directory and document your new data set.
+
+4. Install and restart your package. Can you access the help page and the data set?
+
+5. Check that your package still passes all tests\sidenote{CTRL + E.}.
+
+## Demos
+
+A demo is similar to function examples, but is typically longer and shows how to use multiple functions together. Demos are plain `.R` files that live in the `demo/` package directory. The demos are accessed with the `demo()` function.
+
+\indent{In \texttt{demo/} directory, there should also be an \texttt{00Index} file, that lists
+the demos\sidenote{There is a planned \texttt{demoTitle} tag for \textbf{roxygen2}, but currently this hasn’t been implemented.}. For example,\sidenote{Note the white space separation in
+the \texttt{00Index}. Use at least four spaces
+to avoid annoying error messages.}}
+
+```
+demo1   My very first demo
+demo2   My very second demo
+```
+
+## Tasks
+
+1. Create a `demo/` directory.
+
+2. Create a file called `first.R` and save it in the `demo/` directory. In this file show how you can use some of your newly created function.
+
+3. Add a `00Index` file to the `demo/` directory.
+
+4. Build and check your package.
