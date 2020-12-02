@@ -1,7 +1,7 @@
 Type: Package
 Package: jrPackage
-Title: Course Material for Building R Packages
-Version: 0.1.4
+Title: Jumping Rivers: Building an R Package
+Version: 0.1.5
 Authors@R: 
     person(given = "Colin",
            family = "Gillespie",
