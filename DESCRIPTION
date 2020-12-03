@@ -1,7 +1,7 @@
 Type: Package
 Package: jrPackage
 Title: Jumping Rivers: Building an R Package
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: 
     person(given = "Colin",
            family = "Gillespie",
@@ -20,6 +20,7 @@ Depends:
 Imports:
     devtools,
     drat,
+    ggplot2,
     jrData,
     knitr,
     lintr,
